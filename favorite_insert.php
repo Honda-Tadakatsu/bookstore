@@ -16,12 +16,12 @@
 		require 'db_connect.php';
 
 		//SQL文を作る（プレースホルダを使った式）
-		$sql = "insert into favorite values(:user_id,:book_num)";
+		$sql = "insert into favorite values(:user_num,:book_num)";
 		//プリペアードステートメントを作る
 		$stm = $pdo->prepare($sql);
 		//プリペアードステートメントに値をバインドする
-		$stm->bindValue(':user_id', $_SESSION['user']['id'], PDO::PARAM_STR);
-		$stm->bindValue(':book_num', $_REQUEST['id'], PDO::PARAM_STR);
+		$stm->bindValue(':user_num', $_SESSION['user']['num'], PDO::PARAM_STR);
+		$stm->bindValue(':book_num', $_REQUEST['num'], PDO::PARAM_STR);
 		//SQL文を実行する
 		$stm->execute();
 	?>

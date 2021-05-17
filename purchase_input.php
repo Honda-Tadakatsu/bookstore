@@ -27,7 +27,7 @@
 		?>
 			<p style="font-weight: 700;">お届け先住所</p>
 			<p>名前:<?= $_SESSION['user']['name'] ?></p>
-			<p>住所:<?= $_SESSION['user']['address'] ?></p>
+
 			<hr>
 
 			<?php require 'cart_.php'; ?>
@@ -36,7 +36,6 @@
 		}
 		?>
 	</div>
-
 </body>
 
 </html>

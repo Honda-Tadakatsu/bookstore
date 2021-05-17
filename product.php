@@ -27,7 +27,7 @@
 		//検索の判断
 		if (isset($_POST['keyword'])) {
 			//SQL文を作る（プレースホルダを使った式）
-			$sql = "select * from product where name like :keyword";
+			$sql = "select * from book where name like :keyword";
 			//プリペアードステートメントを作る
 			$stm = $pdo->prepare($sql);
 			//プリペアードステートメントに値をバインドする
@@ -38,7 +38,7 @@
 			$result = $stm->fetchAll(PDO::FETCH_ASSOC);
 		} else {
 			//SQL文を作る
-			$sql = "select * from product";
+			$sql = "select * from book";
 			//プリペアードステートメントを作る
 			$stm = $pdo->prepare($sql);
 			//SQL文を実行する
@@ -47,13 +47,14 @@
 			$result = $stm->fetchAll(PDO::FETCH_ASSOC);
 		}
 		foreach ($result as $row) {
-			$id = $row['id'];
+			$num = $row['num'];
 		?>
 			<tr>
-				<td><?= $id ?></td>
-				<td><a href="detail.php?id=<?= $id ?>"><?= $row['name'] ?></a>
+				<td><?= $num ?></td>
+				<td><a href="detail.php?num=<?= $num ?>"><?= $row['name'] ?></a>
 				</td>
 				<td><?= $row['price'] ?></td>
+
 			</tr>
 		<?php
 		}

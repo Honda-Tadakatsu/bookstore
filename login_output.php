@@ -19,7 +19,8 @@
 	//customerセッションの設定
 	foreach ($result as $row) {
 		$_SESSION['user'] = [
-			'id' => $row['id'], 'name' => $row['name'],
+			'num' => $row['num'], 
+			'name' => $row['name'],
 			'mail' => $row['mail'], 
 			'password' => $row['password']
 		];
