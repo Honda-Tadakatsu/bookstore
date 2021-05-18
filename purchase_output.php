@@ -11,28 +11,20 @@
 <body>
 	<?php require 'menu.php'; ?>
 	<?php
-	if (isset($_SESSION['book']['user'])){
-		//MySQLデータベースに接続する
-		require 'db_connect.php';
-		//SQL文を作る（プレースホルダを使った式）
-		$sql = "insert into purchase values(:user_num,:book_num,:date)";
-		//プリペアードステートメントを作る
-		$stm = $pdo->prepare($sql);
-		//プリペアードステートメントに値をバインドする
-		$stm->bindValue(':user_num', $_SESSION['user']['num'], PDO::PARAM_STR);
-		$stm->bindValue(':book_num', $_SESSION['book']['num'], PDO::PARAM_STR);
-		$stm->bindValue(':date', "1211", PDO::PARAM_STR);
-		//SQL文を実行する
-		$stm->execute();
-	?>
-		商品を購入しました。
-		<hr>
-	<?php
+	require 'db_connect.php';
+	if(isset($_SESSION['book']['user'])){
+		foreach($_SESSION['book'] as $book_num => $book){
+			$sql = "insert into purchase values(:user_num,:book_num,:date)";
+			$stm = $pdo->prepare($sql);
+			$stm->bindValue(':user_num', $_SESSION['user']['num'], PDO::PARAM_INT);
+			$stm->bindValue(':book_num', $_SESSION['book']['num'], PDO::PARAM_INT);
+			$stm->bindValue(':date', "1211", PDO::PARAM_STR);
+			$stm->execute();
+		}
 		unset($_SESSION['book']);
-	} else {
-	?>
-		商品が購入できませんでした。
-	<?php
+		print'購入が完了しました。';
+	}else{
+		print'購入ができませんでした。';
 	}
 	?>
 </body>
