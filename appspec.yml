@@ -1,0 +1,14 @@
+version: 0.0 
+os: linux
+files:
+  - source:
+    destination: /home/ec2-user/php
+permissions:
+    - object: /home/ec2-user/php
+    owner: ec2-user
+    group: nginx
+    pattern: "**"
+    mode:775
+    type:
+      - file
+      - directory
