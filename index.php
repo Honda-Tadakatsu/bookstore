@@ -1,0 +1,2 @@
+DEPLOY SUCCESS
+<?php phpinfo(); ?>
