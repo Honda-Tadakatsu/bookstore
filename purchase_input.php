@@ -26,9 +26,6 @@
 		} else { //正常処理
 		?>
 			<p>名前:<?= $_SESSION['user']['name'] ?></p>
-			<form action="purchase_out.php" method="post">
-				<input type="hidden">			
-			</form>
 			<hr>
 
 			<?php require 'cart_.php'; ?>
