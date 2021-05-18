@@ -10,7 +10,7 @@ if (!empty($_SESSION['book'])) {
             <div class="content_inner">
             <img src="" alt="">
                 <div class="name" >
-                    <dt><a href="detail.php?id=<?= $id ?>"><?= $book['name'] ?></a></dt>
+                    <dt><a href="detail.php?num=<?= $num ?>"><?= $book['name'] ?></a></dt>
                 </div>
                 <div class="price">
                     <dt>￥<?= $book['price'] ?></dt>

@@ -19,7 +19,7 @@
 		//プリペアードステートメントを作る
 		$stm = $pdo->prepare($sql);
 		//プリペアードステートメントに値をバインドする
-		$stm->bindValue(':user_num', $_SESSION['user']['id'], PDO::PARAM_STR);
+		$stm->bindValue(':user_num', $_SESSION['user']['num'], PDO::PARAM_STR);
 		$stm->bindValue(':book_num', $_REQUEST['num'], PDO::PARAM_STR);
 		//SQL文を実行する
 		$stm->execute();

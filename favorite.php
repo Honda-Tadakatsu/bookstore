@@ -10,19 +10,19 @@ if (isset($_SESSION['user'])) {
 	//プリペアードステートメントを作る
 	$stm = $pdo->prepare($sql);
 	//プリペアードステートメントに値をバインドする
-	$stm->bindValue(':user_num', $_SESSION['user']['id'], PDO::PARAM_STR);
+	$stm->bindValue(':user_num', $_SESSION['user']['num'], PDO::PARAM_STR);
 	//SQL文を実行する
 	$stm->execute();
 	//結果の取得（連想配列で受け取る）
 	$result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
 	foreach ($result as $row) {
-		$id = $row['id'];
+		$num = $row['num'];
 	?>
 		<dl>
 			<div class="content_inner">
 				<dt><img src="" alt=""></dt>
-				<dt class="name"><a href="detail.php?id=<?= $id ?>"><?= $row['name'] ?></a></dt>
+				<dt class="name"><a href="detail.php?num=<?= $num ?>"><?= $row['name'] ?></a></dt>
 				<dt class="price">￥<?= $row['price'] ?></dt>
 				<dt class="delete_button"><input type="submit" onclick="location.href='favorite_delete.php?id=<?= $id ?>'" value="削除"></dt>
 				
