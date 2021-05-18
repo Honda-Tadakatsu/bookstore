@@ -9,39 +9,27 @@
 <body>
 	<?php require 'menu.php'; ?>
 	<?php
-	require 'db_connect.php';
-	//purchaseテーブル最終行 id+1を取得
-	$purchase_id = 1;
-	foreach($pdo -> query('select max(id) from purchase') as $row){
-		$purchase_id = $row['max(id)'] + 1;
-	}
-	//SQL文を作る
-	$sql = "insert into purchase values(:id,:book_num)";
-	//プリペアードステートメントを作る
-	$stm = $pdo->prepare($sql);
-	//プリペアードステートメントに値をバインドする
-	$stm -> bindValue(':id',$purchase_id, PDO::PARAM_INT);
-	$stm -> bindValue(':user_id', $_SESSION['user']['id'],PDO::PARAM_INT);
-	if($stm -> execute()){	
-		//SQL成功
-		//セッションに入っている商品の数だけpurchase_detailに保存
-		foreach($_SESSION['book'] as $product_id => $book){
-			//SQL文
-			$sql = "insert into purchase_detail values(:purchase_id,:book_num,:count)";
-			//プリペアードステートメントを作る
-			$stm = $pdo -> prepare($sql);
-			//プリペアードステートメントに値をバインドする
-			$stm->bindValue(':purchase_id',$purchase_id, PDO::PARAM_INT);
-			$stm->bindValue(':book_num',$book_num, PDO::PARAM_INT);
-			$stm->bindValue(':count',1, PDO::PARAM_INT);
-			//SQL文を実行
-			$stm -> execute();
-		}
-		unset($_SESSION['book']);
-		print '購入手続きが完了しました。ありがとうございます。';
-	}else{
-		//SQL失敗
-		print "購入手続き中にエラーが発生しました。申し訳ございません。";
+	if (isset($_SESSION['user'])) {
+		//MySQLデータベースに接続する
+		require 'db_connect.php';
+		//SQL文を作る（プレースホルダを使った式）
+		$sql = "insert into purchase values(null,:user_num,:book_num,:date)";
+		//プリペアードステートメントを作る
+		$stm = $pdo->prepare($sql);
+		//プリペアードステートメントに値をバインドする
+		$stm->bindValue(':user_num', $_SESSION['user']['num'], PDO::PARAM_STR);
+		$stm->bindValue(':book_num', $_REQUEST['num'], PDO::PARAM_STR);
+		$stm->bindValue(':date', "123", PDO::PARAM_STR);
+		//SQL文を実行する
+		$stm->execute();
+	?>
+		商品を購入しました。
+		<hr>
+	<?php 
+	} else {
+	?>
+		商品が購入できませんでした。
+	<?php
 	}
 	?>
 </body>

@@ -71,7 +71,7 @@
                             <?php foreach ($val as $listVal) : ?>
                                 <tr>
                                     <td></td>
-                                    <td><a href="detail.php?id=<?= $listVal['product_id'] ?>"><?= $listVal['name'] ?></a></td>
+                                    <td><a href="detail.php?num=<?= $listVal['book_num'] ?>"><?= $listVal['name'] ?></a></td>
                                     <td>￥<?= $listVal['subtotal'] ?></td>
                                 <?php $total += $listVal['subtotal'];
                             endforeach; ?>

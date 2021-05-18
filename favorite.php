@@ -24,7 +24,7 @@ if (isset($_SESSION['user'])) {
 				<dt><img src="" alt=""></dt>
 				<dt class="name"><a href="detail.php?num=<?= $num ?>"><?= $row['name'] ?></a></dt>
 				<dt class="price">￥<?= $row['price'] ?></dt>
-				<dt class="delete_button"><input type="submit" onclick="location.href='favorite_delete.php?id=<?= $id ?>'" value="削除"></dt>
+				<dt class="delete_button"><input type="submit" onclick="location.href='favorite_delete.php?num=<?= $num ?>'" value="削除"></dt>
 				
 			</div><hr>
 		</dl>

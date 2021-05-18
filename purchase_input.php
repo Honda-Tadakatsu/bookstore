@@ -25,9 +25,10 @@
 			print "カートに商品がありません。";
 		} else { //正常処理
 		?>
-			<p style="font-weight: 700;">お届け先住所</p>
 			<p>名前:<?= $_SESSION['user']['name'] ?></p>
-
+			<form action="purchase_out.php" method="post">
+				<input type="hidden">			
+			</form>
 			<hr>
 
 			<?php require 'cart_.php'; ?>

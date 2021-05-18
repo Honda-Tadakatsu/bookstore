@@ -15,12 +15,12 @@
 	//MySQLデータベースに接続する
 	require 'db_connect.php';
 	//SQL文を作る（プレースホルダを使った式）
-	$sql = "delete from favorite where user_id = :user_id and book_num = :book_num";
+	$sql = "delete from favorite where user_num = :user_num and book_num = :book_num";
 	//プリペアードステートメントを作る
 	$stm = $pdo->prepare($sql);
 	//プリペアードステートメントに値をバインドする
-	$stm->bindValue(':user_id', $_SESSION['user']['id'], PDO::PARAM_STR);
-	$stm->bindValue(':book_num', $_REQUEST['id'], PDO::PARAM_STR);
+	$stm->bindValue(':user_num', $_SESSION['user']['num'], PDO::PARAM_STR);
+	$stm->bindValue(':book_num', $_REQUEST['num'], PDO::PARAM_STR);
 	//SQL文を実行する
 	$stm->execute();
 	//結果の取得（連想配列で受け取る）
