@@ -3,7 +3,7 @@ if (!empty($_SESSION['book'])) {
 ?>
     <?php
     $total = 0;
-    foreach ($_SESSION['book'] as $id => $book) {
+    foreach ($_SESSION['book'] as $num => $book) {
     ?>
     <div class="content_list">
         <dl>
@@ -20,7 +20,7 @@ if (!empty($_SESSION['book'])) {
                     ?>
                 </div>
                 <div class="delete_button">
-                     <input type="submit" onclick="location.href='cart_delete.php?id=<?= $id ?>'" value="削除">
+                     <input type="submit" onclick="location.href='cart_delete.php?num=<?= $num ?>'" value="削除">
                 </div>
             </div>
         </dl>
